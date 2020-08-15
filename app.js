@@ -12,6 +12,11 @@ document.getElementById("search-btn").addEventListener('click' , () => {
     getApiData(cityName);
 });
 
+document.getElementById("search-btn").addEventListener('keypress' , () => {
+    const cityName = document.getElementById("search-box-data").value;
+    getApiData(cityName);
+});
+
 // function for get api data from openweathermap.org
 
 function getApiData(cityName){
@@ -27,4 +32,7 @@ function showData(weather){
     document.getElementById("city-name").innerText = weather.name + " " + weather.sys.country;
     document.getElementById("temp").innerText = weather.main.temp;
     document.getElementById("weather-type").innerText = weather.weather[0].main;
+
+    const iconUrl = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`;
+    document.getElementById('icon-change').setAttribute('src' , iconUrl);
 }
